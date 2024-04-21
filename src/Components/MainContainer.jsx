@@ -1,33 +1,28 @@
-import {useState} from "react";
-import "./mystyles.css";
+import React, { createContext, useState } from "react";
+import "./myStyles.css";
 import Sidebar from "./Sidebar";
-import WorkArea from "./WorkArea"; // Uncomment when ready to use
-import ChatArea from "./ChatArea";
-import Welcome from "./Welcome";
-import CreateGroups from "./CreateGroups";
-import Login from "./Login";
-import Users from "./Users";
 import { Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function MainContainer() {
-    // const conversation = {
-    //     name: "text#1",
-    //     lastMessage: "Last message in conversation",
-    //     timeStamp: "Today",
-    // };
-   
+export const myContext = createContext();
+function MainContainer() {
+  const dispatch = useDispatch();
+  const lightTheme = useSelector((state) => state.themeKey);
+  const [refresh, setRefresh] = useState(true);
 
-    return (
-        <div className="main-container">
-            <Sidebar />
-            <Outlet />
-            {/* <WorkArea /> Uncomment when ready to use */}
-            {/* <ChatArea {...conversation} /> */}
-            {/* <ChatArea props={conversations[0]} /> */}
-            {/* <Welcome /> */}
-            {/* <CreateGroups /> */}
-            {/* <Login /> */}
-            {/* <Users /> */}
-        </div>
-    );
+  return (
+    <div className={"main-container" + (lightTheme ? "" : " dark")}>
+      <myContext.Provider value={{ refresh: refresh, setRefresh: setRefresh }}>
+        <Sidebar />
+        <Outlet />
+      </myContext.Provider>
+      {/* <Welcome /> */}
+      {/* <CreateGroups /> */}
+      {/* <ChatArea props={conversations[0]} /> */}
+      {/* <Users /> */}
+      {/* <Groups /> */}
+    </div>
+  );
 }
+
+export default MainContainer;
