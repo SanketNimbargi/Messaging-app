@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const refreshSidebar = createSlice({
+export  const refreshSidebar = createSlice({
   name: "refreshSidebar",
   initialState: true,
   reducers: {
