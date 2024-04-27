@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { refreshSidebarFun } from "../Features/refreshSidebar";
 import { myContext } from "./MainContainer";
 
-export default function Users() {
+function Users() {
   // const [refresh, setRefresh] = useState(true);
   const { refresh, setRefresh } = useContext(myContext);
 
@@ -34,7 +34,7 @@ export default function Users() {
         Authorization: `Bearer ${userData.data.token}`,
       },
     };
-    axios.get("http://localhost:8080/user/fetchUsers", config).then((data) => {
+    axios.get("http://localhost:8082/user/fetchUsers", config).then((data) => {
       console.log("UData refreshed in Users panel ");
       setUsers(data.data);
       // setRefresh(!refresh);
@@ -94,7 +94,7 @@ export default function Users() {
                     },
                   };
                   axios.post(
-                    "http://localhost:8080/chat/",
+                    "http://localhost:8082/chat/",
                     {
                       userId: user._id,
                     },
@@ -116,3 +116,4 @@ export default function Users() {
   );
 }
 
+export default Users;
