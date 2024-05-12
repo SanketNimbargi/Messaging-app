@@ -10,7 +10,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { refreshSidebarFun } from "../Features/refreshSidebar";
 import { myContext } from "./MainContainer";
-import { motion } from "framer-motion"
+
 
 export default function Groups() {
   // const [refresh, setRefresh] = useState(true);
